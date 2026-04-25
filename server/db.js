@@ -3,8 +3,8 @@ const bcrypt = require('bcryptjs');
 require('dotenv').config({ path: require('path').join(__dirname, '.env') });
 
 const baseConfig = {
-  server: process.env.DB_SERVER || 'localhost',
-  user:   process.env.DB_USER   || 'sa',
+  server:   process.env.DB_SERVER || 'localhost',
+  user:     process.env.DB_USER   || 'sa',
   password: process.env.DB_PASSWORD || '',
   options: {
     encrypt: false,
