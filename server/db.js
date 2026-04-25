@@ -450,7 +450,9 @@ async function setupDatabase() {
     .input('email', sql.NVarChar, adminEmail)
     .query('SELECT id FROM users WHERE email = @email');
   if (adminCheck.recordset.length === 0) {
-    const hash = await bcrypt.hash('Boca6920', 12);
+    const adminPassword = process.env.ADMIN_PASSWORD;
+    if (!adminPassword) throw new Error('Set ADMIN_PASSWORD in server/.env before first run');
+    const hash = await bcrypt.hash(adminPassword, 12);
     await dbPool.request()
       .input('name',            sql.NVarChar, 'Ziyad Mehmood')
       .input('email',           sql.NVarChar, adminEmail)
